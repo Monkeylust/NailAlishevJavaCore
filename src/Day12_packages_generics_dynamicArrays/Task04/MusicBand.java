@@ -1,6 +1,5 @@
 package Day12_packages_generics_dynamicArrays.Task04;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MusicBand {
@@ -39,7 +38,7 @@ public class MusicBand {
     }
 
     public String toString() {
-        return "%s %s".formatted(name, year, groupMember);
+        return "%s %s %s".formatted(name, year, groupMember);
     }
 
     //-----------------------Статический------------------------//

@@ -38,7 +38,7 @@ public class MusicBand {
     }
 
     public String toString() {
-        return "%s %s".formatted(name, year, groupMember);
+        return "%s %s %s".formatted(name, year, groupMember);
     }
 
     public static void transferMembers1(MusicBand a, MusicBand b) {
