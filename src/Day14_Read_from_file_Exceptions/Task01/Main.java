@@ -2,13 +2,14 @@ package Day14_Read_from_file_Exceptions.Task01;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class Main {
+    static final int STANDARD_LENGTH_ARRAY = 10;
+
     public static void main(String[] args) {
         printSumDigits(new File("Day14Task01"));
     }
@@ -18,19 +19,18 @@ public class Main {
             Scanner scanner = new Scanner(file);
             String line = scanner.nextLine();
             String[] numbersString = line.split(" ");
-            if (numbersString.length != 10) {
+            if (numbersString.length != STANDARD_LENGTH_ARRAY) {
                 throw new IncorrectNumberOfNumbersException();
             }
             int[] numbersArrayStatic = new int[numbersString.length]; //Вариант с массивом
             //List<Integer> numbersArrayDynamic = new ArrayList<>(); //Вариант с динамическим массивом
-            int counterStatic = 0;
             int sumStatic = 0;
             //int sumDynamic = 0;
-            for (String number : numbersString) {
-                numbersArrayStatic[counterStatic++] = Integer.parseInt(number);
-                //numbersArrayDynamic.add(Integer.parseInt(number));
-                sumStatic += Integer.parseInt(number);
-                //sumDynamic += Integer.parseInt(number);
+            for (int i = 0; i < numbersString.length; i++) {
+                numbersArrayStatic[i++] = Integer.parseInt(numbersString[i]);
+                //numbersArrayDynamic.add(Integer.parseInt(numbersString[i]));
+                sumStatic += Integer.parseInt(numbersString[i]);
+                //sumDynamic += Integer.parseInt(numbersString[i]);
             }
             System.out.println(Arrays.toString(numbersArrayStatic));
             //System.out.println(numbersArrayDynamic);
@@ -40,6 +40,7 @@ public class Main {
         } catch (FileNotFoundException e) {
             System.out.println("File is missing.");
         } catch (IncorrectNumberOfNumbersException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
