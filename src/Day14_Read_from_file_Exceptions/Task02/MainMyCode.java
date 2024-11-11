@@ -34,14 +34,14 @@ public class MainMyCode {
             for (int i = 1; i <= peopleArray.length; i += 2) {
                 agePeople[counterForAgePeople] += Integer.parseInt(peopleArray[i]);
                 if (agePeople[counterForAgePeople] <= 0) {
-                    throw new NegativeAgeexception();
+                    throw new NegativeAgeException();
                 }
                 counterForAgePeople++;
             }
             System.out.println(Arrays.toString(agePeople) + " /// agePeople 4"); //проверка массива хранящий возраст
         } catch (FileNotFoundException e) {
             System.out.println("File is missing.");
-        } catch (NegativeAgeexception e) {
+        } catch (NegativeAgeException e) {
             System.out.println(e.getMessage());
         }
         return listPeople;

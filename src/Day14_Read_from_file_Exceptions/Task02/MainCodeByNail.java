@@ -17,18 +17,22 @@ public class MainCodeByNail {
         try (Scanner scanner = new Scanner(filePeople)) {
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
-                String[] array = line.split(" ");
-                if (Integer.parseInt(array[1]) <= 0) {
-                    throw new NegativeAgeexception();
-                }
-                listPeople.add(line);
+                listPeople.add(negativeAge(line));
             }
             return listPeople;
         } catch (FileNotFoundException e) {
             System.out.println("File is missing.");
-        } catch (NegativeAgeexception e) {
+        } catch (NegativeAgeException e) {
             System.out.println(e.getMessage());
         }
-        return null;
+        return new ArrayList<>();
+    }
+
+    public static String negativeAge(String string) throws NegativeAgeException {
+        String[] temp = string.split(" ");
+        if (Integer.parseInt(temp[1]) <= 0) {
+            throw new NegativeAgeException();
+        }
+        return string;
     }
 }
