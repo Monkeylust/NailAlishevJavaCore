@@ -17,9 +17,7 @@ public class Main {
         try (Scanner scanner = new Scanner(file)) {
             while (scanner.hasNextLine()) {
                 String linePerson = scanner.nextLine();
-                String[] arrayPerson = linePerson.split(" ");
-                validateAge(arrayPerson);
-                listPersonAdd(listPerson, arrayPerson);
+                listPerson.add(parseLinePerson(linePerson));
             }
             return listPerson;
         } catch (FileNotFoundException e) {
@@ -36,7 +34,9 @@ public class Main {
         }
     }
 
-    public static void listPersonAdd(List<Person> listPerson, String[] arrayPerson) {
-        listPerson.add(new Person(arrayPerson[0], Integer.parseInt(arrayPerson[1])));
+    public static Person parseLinePerson(String linePerson) throws NegativeAgeException {
+        String[] arrayPerson = linePerson.split(" ");
+        validateAge(arrayPerson);
+        return new Person(arrayPerson[0], Integer.parseInt(arrayPerson[1]));
     }
 }
