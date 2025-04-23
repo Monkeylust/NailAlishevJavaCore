@@ -38,7 +38,7 @@ public class Task02 {
             sb.append(random.nextInt(100)).append(" ");
         }
         return sb;
-    }
+     }
 
     public static void writeArray(PrintWriter pw) {
         pw.print(generateLineNumbers(counterStart, counterFinal));
