@@ -15,16 +15,16 @@ public class Task02 {
 
     public static void main(String[] args) {
         try (PrintWriter pwOne = new PrintWriter("file1");
-             Scanner scannerOne = new Scanner(new File(PATH_NAME_FILE_ONE));
+             Scanner scanner = new Scanner(new File(PATH_NAME_FILE_ONE));
              PrintWriter pwTwo = new PrintWriter(fileTwo)) {
-            createPwOne(pwOne);
-            if (scannerOne.hasNext()) {
-                String[] lineNumbersFileOne = scannerOne.nextLine().split(" ");
+            writeArray(pwOne);
+            if (scanner.hasNext()) {
+                String[] lineNumbersFileOne = scanner.nextLine().split(" ");
                 printPwTwo(lineNumbersFileOne, pwTwo);
             } else {
                 throw new NoSuchElementException();
             }
-            printResult(fileTwo);
+            printResult(calculateResult(fileTwo));
         } catch (FileNotFoundException e) {
             System.out.println("File is missing!");
         } catch (NoSuchElementException e) {
@@ -32,53 +32,55 @@ public class Task02 {
         }
     }
 
-    public static void createPwOne(PrintWriter pwOne) {
-        StringBuilder sbOne = new StringBuilder();
+    public static StringBuilder generateLineNumbers(int counterStart, int counterFinal) {
+        StringBuilder sb = new StringBuilder();
         for (int i = counterStart; i < counterFinal; i++) {
-            sbOne.append(random.nextInt(100)).append(" ");
+            sb.append(random.nextInt(100)).append(" ");
         }
-        pwOne.print(sbOne);
-        pwOne.flush();
+        return sb;
     }
 
-    public static void printPwTwo(String[] lineNumbersFileOne, PrintWriter pwTwo) {
-        StringBuilder sbTwo = new StringBuilder();
+    public static void writeArray(PrintWriter pw) {
+        pw.print(generateLineNumbers(counterStart, counterFinal));
+        pw.flush();
+    }
+
+    public static void printPwTwo(String[] lineNumbersFile, PrintWriter pw) {
+        StringBuilder sb = new StringBuilder();
         int sum = 0;
         int counter = 0;
         StringBuilder sbTemp = new StringBuilder();
-        for (String string : lineNumbersFileOne) {
+        for (String string : lineNumbersFile) {
             if (!isNumber(string)) {
                 continue;
             }
             sum += Integer.parseInt(string);
             counter++;
             if (counter >= 5) {
-                sbTwo.append(sum / 5.0).append(" ");
+                sb.append(sum / 5.0).append(" ");
                 sbTemp.append(sum).append(" ");
                 sum = 0;
                 counter = 0;
             }
         }
-        System.out.println(Arrays.toString(lineNumbersFileOne));
+        System.out.println(Arrays.toString(lineNumbersFile));
         System.out.println(sbTemp);
-        System.out.println(sbTwo);
-        pwTwo.print(sbTwo);
-        pwTwo.flush();
+        System.out.println(sb);
+        pw.print(sb);
+        pw.flush();
     }
 
-    public static void printResult(File fileTwo) {
-        try (Scanner scanner = new Scanner(fileTwo)) {
+    public static double calculateResult(File file) {
+        double result = 0;
+        try (Scanner scanner = new Scanner(file)) {
             if (scanner.hasNext()) {
                 String[] line = scanner.nextLine().split(" ");
-                double result = 0;
                 for (String string : line) {
-                    if (!isNumber(string)) {
+                    if (isNumber(string)) {
                         continue;
                     }
                     result += Double.parseDouble(string);
                 }
-                System.out.println(result);
-                System.out.println((int) result);
             } else {
                 throw new NoSuchElementException();
             }
@@ -87,9 +89,15 @@ public class Task02 {
         } catch (NoSuchElementException e) {
             System.out.println("File is empty");
         }
+        return result;
     }
 
     public static boolean isNumber(String string) {
         return string.matches("-?\\d+");
+    }
+
+    public static void printResult(double result) {
+        System.out.println(calculateResult(fileTwo));
+        System.out.println((int) result);
     }
 }
