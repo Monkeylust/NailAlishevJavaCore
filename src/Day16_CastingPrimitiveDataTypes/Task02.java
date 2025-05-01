@@ -32,20 +32,20 @@ public class Task02 {
         }
     }
 
-    public static StringBuilder generateLineNumbers(int counterStart, int counterFinal) {
+    private static StringBuilder generateLineNumbers(int counterStart, int counterFinal) {
         StringBuilder sb = new StringBuilder();
         for (int i = counterStart; i < counterFinal; i++) {
             sb.append(random.nextInt(100)).append(" ");
         }
         return sb;
-     }
+    }
 
-    public static void writeArray(PrintWriter pw) {
+    private static void writeArray(PrintWriter pw) {
         pw.print(generateLineNumbers(counterStart, counterFinal));
         pw.flush();
     }
 
-    public static void printPwTwo(String[] lineNumbersFile, PrintWriter pw) {
+    private static void printPwTwo(String[] lineNumbersFile, PrintWriter pw) {
         StringBuilder sb = new StringBuilder();
         int sum = 0;
         int counter = 0;
@@ -70,13 +70,13 @@ public class Task02 {
         pw.flush();
     }
 
-    public static double calculateResult(File file) {
+    private static double calculateResult(File file) {
         double result = 0;
         try (Scanner scanner = new Scanner(file)) {
             if (scanner.hasNext()) {
                 String[] line = scanner.nextLine().split(" ");
                 for (String string : line) {
-                    if (isNumber(string)) {
+                    if (!isNumber(string)) {
                         continue;
                     }
                     result += Double.parseDouble(string);
@@ -92,11 +92,11 @@ public class Task02 {
         return result;
     }
 
-    public static boolean isNumber(String string) {
-        return string.matches("-?\\d+");
+    private static boolean isNumber(String string) {
+        return string.matches("-?\\d+(\\.\\d+)?");
     }
 
-    public static void printResult(double result) {
+    private static void printResult(double result) {
         System.out.println(calculateResult(fileTwo));
         System.out.println((int) result);
     }
