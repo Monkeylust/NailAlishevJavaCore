@@ -19,4 +19,4 @@ public enum ChessPiece {
     public String getView() {
         return view;
     }
-}
+ }
