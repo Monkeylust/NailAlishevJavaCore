@@ -9,12 +9,12 @@ public class Task2 {
 
     static private int getTheNumberOfRepeatedDigits(int digit) {
         int counter = 0;
-        if (digit % 10 == 7) {
-            counter++;
-        }
-
         if (digit == 0) {
             return counter;
+        }
+
+        if (digit % 10 == 7) {
+            counter++;
         }
 
         return counter + getTheNumberOfRepeatedDigits(digit / 10);
