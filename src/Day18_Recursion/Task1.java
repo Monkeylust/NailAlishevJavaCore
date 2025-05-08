@@ -6,17 +6,17 @@ public class Task1 {
     static Random random = new Random();
 
     public static void main(String[] args) {
-        System.out.printf("%s %d \n", "Сумма чисел массива =", recursionSum(randomArray(), randomArray().length - 1));
+        int[] randomArray = randomArray();
+        int sum = recursionSum(randomArray, 0);
+        System.out.printf("%s %d \n", "Сумма чисел массива =", sum);
     }
 
-    private static int recursionSum(int[] randomArray, int numbers) {
-        int sum = 0;
-        if (numbers < 0) {
-            System.out.println(Arrays.toString(randomArray));
-            return sum;
+    private static int recursionSum(int[] array, int index) {
+        if (index == array.length) {
+            System.out.println(Arrays.toString(array));
+            return 0;
         }
-        sum += randomArray[numbers];
-        return sum + recursionSum(randomArray, numbers - 1);
+        return array[index] + recursionSum(array, index + 1);
     }
 
     private static int[] randomArray() {
