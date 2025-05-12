@@ -1,19 +1,19 @@
 package Day19_Final_Project.SeaWar;
 
 public class Coordinate {
-    private int x;
     private int y;
+    private int x;
 
-    public Coordinate(int x, int y) {
-        this.x = x;
+    public Coordinate(int y, int x) {
         this.y = y;
-    }
-
-    public int getX() {
-        return x;
+        this.x = x;
     }
 
     public int getY() {
         return y;
+    }
+
+    public int getX() {
+        return x;
     }
 }
