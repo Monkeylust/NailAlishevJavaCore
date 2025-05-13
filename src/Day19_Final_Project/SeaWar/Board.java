@@ -52,6 +52,7 @@ public class Board {
                 }
                 for (int i = 0; i < countDeck; i++) {
                     gameBoard[y][x + i] = Field.SHIP;
+                    getHalo(coordinate, ship);
                 }
                 break;
             case VER:
@@ -76,6 +77,29 @@ public class Board {
                 return false;
             }
         }
+
+        return true;
+    }
+
+    public boolean checkFieldVer(int y, int x, int countDeck) {
+        if (y + countDeck > gameBoard.length - 1) {
+            System.out.println("Ошибка, вы вышли за границы доски.");
+            return false;
+        }
+        for (int i = 0; i < countDeck; i++) {
+            if (!gameBoard[y + i][x].equals(Field.EMPTY)) {
+                System.out.println("Ошибка, ячейка занята.");
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public void getHalo(Coordinate coordinate, Ship ship) {
+        int y = coordinate.getY();
+        int x = coordinate.getX();
+        int countDeck = ship.getCountDeck().getValue();
+
         for (int i = 0; i < countDeck; i++) {
             if (gameBoard[y - 1][x - 1] == Field.EMPTY) {
                 gameBoard[y - 1][x - 1] = Field.THE_SHIPS_HALO;
@@ -102,22 +126,6 @@ public class Board {
                 gameBoard[y - 1][x + i] = Field.THE_SHIPS_HALO;
             }
         }
-        return true;
     }
-
-    public boolean checkFieldVer(int y, int x, int countDeck) {
-        if (y + countDeck > gameBoard.length - 1) {
-            System.out.println("Ошибка, вы вышли за границы доски.");
-            return false;
-        }
-        for (int i = 0; i < countDeck; i++) {
-            if (!gameBoard[y + i][x].equals(Field.EMPTY)) {
-                System.out.println("Ошибка, ячейка занята.");
-                return false;
-            }
-        }
-        return true;
-    }
-
 
 }

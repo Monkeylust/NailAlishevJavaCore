@@ -2,10 +2,11 @@ package Day19_Final_Project.SeaWar;
 
 public enum Field {
     SHIP("\uD83D\uDEA2"),
-    EMPTY("⬜"),
-    THE_SHIPS_HALO("⚓"),
+    EMPTY("\uD83D\uDFE8"),
+    THE_SHIPS_HALO("🌊"),
     DAMAGE("\uD83D\uDFE5"),
-    WAVE("🌊");
+    WAVE("✅"),
+    RIP("⚓");
 
     private String view;
 
