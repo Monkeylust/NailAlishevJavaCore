@@ -27,6 +27,18 @@ public class Board {
         System.out.println();
     }
 
+    public void attack(Coordinate coordinate) {
+        int y = coordinate.getY();
+        int x = coordinate.getX();
+        if (gameBoard[y][x] == Field.EMPTY | gameBoard[y][x] ==Field.THE_SHIPS_HALO) {
+            gameBoard[y][x] = Field.WAVE;
+        }
+        if (gameBoard[y][x] == Field.SHIP) {
+            gameBoard[y][x] = Field.DAMAGE;
+        }
+
+    }
+
     public void addShip(Coordinate coordinate, Ship ship, Orientation or) {
         int y = coordinate.getY();
         int x = coordinate.getX();
@@ -64,6 +76,41 @@ public class Board {
                 return false;
             }
         }
+        for (int i = 0; i < countDeck; i++) {
+            if (gameBoard[y - 1][x - 1] == Field.EMPTY) {
+                gameBoard[y - 1][x - 1] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y - 1][x] == Field.EMPTY) {
+                gameBoard[y - 1][x] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y - 1][x + 1] == Field.EMPTY) {
+                gameBoard[y - 1][x + 1] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y][x - 1] == Field.EMPTY) {
+                gameBoard[y][x - 1] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y][x + 1] == Field.EMPTY) {
+                gameBoard[y][x + 1] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y + 1][x - 1] == Field.EMPTY) {
+                gameBoard[y + 1][x - 1] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y + 1][x] == Field.EMPTY) {
+                gameBoard[y + 1][x] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y + 1][x + 1] == Field.EMPTY) {
+                gameBoard[y + 1][x + 1] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y - 1][x + countDeck] == Field.EMPTY) {
+                gameBoard[y - 1][x + countDeck] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y][x + countDeck] == Field.EMPTY) {
+                gameBoard[y][x + countDeck] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y + 1][x + countDeck] == Field.EMPTY) {
+                gameBoard[y + 1][x + countDeck] = Field.THE_SHIPS_HALO;
+            }
+        }
         return true;
     }
 
@@ -80,4 +127,6 @@ public class Board {
         }
         return true;
     }
+
+
 }
