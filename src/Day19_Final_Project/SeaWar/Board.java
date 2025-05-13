@@ -30,7 +30,7 @@ public class Board {
     public void attack(Coordinate coordinate) {
         int y = coordinate.getY();
         int x = coordinate.getX();
-        if (gameBoard[y][x] == Field.EMPTY | gameBoard[y][x] ==Field.THE_SHIPS_HALO) {
+        if (gameBoard[y][x] == Field.EMPTY | gameBoard[y][x] == Field.THE_SHIPS_HALO) {
             gameBoard[y][x] = Field.WAVE;
         }
         if (gameBoard[y][x] == Field.SHIP) {
@@ -80,26 +80,11 @@ public class Board {
             if (gameBoard[y - 1][x - 1] == Field.EMPTY) {
                 gameBoard[y - 1][x - 1] = Field.THE_SHIPS_HALO;
             }
-            if (gameBoard[y - 1][x] == Field.EMPTY) {
-                gameBoard[y - 1][x] = Field.THE_SHIPS_HALO;
-            }
-            if (gameBoard[y - 1][x + 1] == Field.EMPTY) {
-                gameBoard[y - 1][x + 1] = Field.THE_SHIPS_HALO;
-            }
             if (gameBoard[y][x - 1] == Field.EMPTY) {
                 gameBoard[y][x - 1] = Field.THE_SHIPS_HALO;
             }
-            if (gameBoard[y][x + 1] == Field.EMPTY) {
-                gameBoard[y][x + 1] = Field.THE_SHIPS_HALO;
-            }
             if (gameBoard[y + 1][x - 1] == Field.EMPTY) {
                 gameBoard[y + 1][x - 1] = Field.THE_SHIPS_HALO;
-            }
-            if (gameBoard[y + 1][x] == Field.EMPTY) {
-                gameBoard[y + 1][x] = Field.THE_SHIPS_HALO;
-            }
-            if (gameBoard[y + 1][x + 1] == Field.EMPTY) {
-                gameBoard[y + 1][x + 1] = Field.THE_SHIPS_HALO;
             }
             if (gameBoard[y - 1][x + countDeck] == Field.EMPTY) {
                 gameBoard[y - 1][x + countDeck] = Field.THE_SHIPS_HALO;
@@ -109,6 +94,12 @@ public class Board {
             }
             if (gameBoard[y + 1][x + countDeck] == Field.EMPTY) {
                 gameBoard[y + 1][x + countDeck] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y + 1][x + i] == Field.EMPTY) {
+                gameBoard[y + 1][x + i] = Field.THE_SHIPS_HALO;
+            }
+            if (gameBoard[y - 1][x + i] == Field.EMPTY) {
+                gameBoard[y - 1][x + i] = Field.THE_SHIPS_HALO;
             }
         }
         return true;
