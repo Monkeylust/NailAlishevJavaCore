@@ -100,25 +100,26 @@ public class Board {
         int x = coordinate.getX();
         int countDeck = ship.getCountDeck().getValue();
 
+        if (gameBoard[y - 1][x - 1] == Field.EMPTY) {
+            gameBoard[y - 1][x - 1] = Field.THE_SHIPS_HALO;
+        }
+        if (gameBoard[y][x - 1] == Field.EMPTY) {
+            gameBoard[y][x - 1] = Field.THE_SHIPS_HALO;
+        }
+        if (gameBoard[y + 1][x - 1] == Field.EMPTY) {
+            gameBoard[y + 1][x - 1] = Field.THE_SHIPS_HALO;
+        }
+        if (gameBoard[y - 1][x + countDeck] == Field.EMPTY) {
+            gameBoard[y - 1][x + countDeck] = Field.THE_SHIPS_HALO;
+        }
+        if (gameBoard[y][x + countDeck] == Field.EMPTY) {
+            gameBoard[y][x + countDeck] = Field.THE_SHIPS_HALO;
+        }
+        if (gameBoard[y + 1][x + countDeck] == Field.EMPTY) {
+            gameBoard[y + 1][x + countDeck] = Field.THE_SHIPS_HALO;
+        }
+
         for (int i = 0; i < countDeck; i++) {
-            if (gameBoard[y - 1][x - 1] == Field.EMPTY) {
-                gameBoard[y - 1][x - 1] = Field.THE_SHIPS_HALO;
-            }
-            if (gameBoard[y][x - 1] == Field.EMPTY) {
-                gameBoard[y][x - 1] = Field.THE_SHIPS_HALO;
-            }
-            if (gameBoard[y + 1][x - 1] == Field.EMPTY) {
-                gameBoard[y + 1][x - 1] = Field.THE_SHIPS_HALO;
-            }
-            if (gameBoard[y - 1][x + countDeck] == Field.EMPTY) {
-                gameBoard[y - 1][x + countDeck] = Field.THE_SHIPS_HALO;
-            }
-            if (gameBoard[y][x + countDeck] == Field.EMPTY) {
-                gameBoard[y][x + countDeck] = Field.THE_SHIPS_HALO;
-            }
-            if (gameBoard[y + 1][x + countDeck] == Field.EMPTY) {
-                gameBoard[y + 1][x + countDeck] = Field.THE_SHIPS_HALO;
-            }
             if (gameBoard[y + 1][x + i] == Field.EMPTY) {
                 gameBoard[y + 1][x + i] = Field.THE_SHIPS_HALO;
             }
@@ -127,5 +128,4 @@ public class Board {
             }
         }
     }
-
 }
